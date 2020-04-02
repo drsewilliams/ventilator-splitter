@@ -18,4 +18,6 @@ switch param_config
         % Set the parameters...
         strconfig = 'Original configuration (SI Units)';
     %case 1000 % load parameters from file?
+    otherwise
+        strconfig = 'New configuration';
 end
