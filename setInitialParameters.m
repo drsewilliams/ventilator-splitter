@@ -6,8 +6,10 @@
 
 %% Original parameters  
 % First, clear any parameter from this model that might be in the workspace 
-clear v_M_exhale v_M_inhale R_M R_U1 R_U2 R_D1 R_D2 R_L1 R_L2 C_L1 ...
-    C_L2 R_E1 R_E2 R_O RR I E IE_ratio; 
+clear v_M_exhale v_M_inhale R_M R_U1 R_U2 R_D1 R_D2 R_L1 R_L2 C_L1 C_L2 ...
+    R_aL1 R_aL2 C_aL1 C_aL2 RaR_E1 R_E2 R_O RR I E IE_ratio...
+    ETT_factor1 ETT_factor2; 
+clc;
 
 % Set the parameters...
 v_M_exhale = 5;% Pa PEEP = 5cmH20
@@ -25,6 +27,15 @@ R_L1 = 1e2; % want 2.0cmH2O/L/s
 R_L2 = 1e2;
 C_L1 = 1e-3; % 0.064 L/cmH2O into m^3/Pa
 C_L2 = 2e-3;
+ETT_factor1 = 10;
+ETT_factor2 = 10;
+
+% === artificial patients ====
+R_aL1 = 1e2; % want 2.0cmH2O/L/s
+R_aL2 = 1e2;
+C_aL1 = 1e-3; % 0.064 L/cmH2O into m^3/Pa
+C_asL2 = 2e-3;
+% =======
 
 R_E1 = 1;
 R_E2 = 1;
@@ -40,14 +51,15 @@ save('Ventilator_Electrical_Parameters');
 
 %% Conversion to SI units
 % First, clear any parameter from this model that might be in the workspace 
-clear v_M_exhale v_M_inhale R_M R_U1 R_U2 R_D1 R_D2 R_L1 R_L2 C_L1 ...
-    C_L2 R_E1 R_E2 R_O RR I E IE_ratio; 
+clear v_M_exhale v_M_inhale R_M R_U1 R_U2 R_D1 R_D2 R_L1 R_L2 C_L1 C_L2 ...
+    R_aL1 R_aL2 C_aL1 C_aL2 RaR_E1 R_E2 R_O RR I E IE_ratio...
+    ETT_factor1 ETT_factor2; 
 clc; 
 
 % Set the parameters...
 v_M_exhale = 490;% Pa PEEP = 5cmH20
 v_M_inhale = 1960; % PIP = 20cmH2O
-R_M = 1; % Pa*s/m^3
+R_M = 4000; % Pa*s/m^3
 % current = m^3/s
 % charge = m^3
 % tube length = 1.5 m?
@@ -60,6 +72,15 @@ R_L1 = 196133; % want 2.0cmH2O/L/s
 R_L2 = 196133;
 C_L1 = 6.5261838e-7; % 0.064 L/cmH2O into m^3/Pa
 C_L2 = 6.5261838e-7;
+ETT_factor1 = 10;
+ETT_factor2 = 10;
+
+% === artificial patients ====
+R_aL1 = 196133; % want 2.0cmH2O/L/s
+R_aL2 = 196133;
+C_aL1 = 6.5261838e-7; % 0.064 L/cmH2O into m^3/Pa
+C_asL2 = 6.5261838e-7;
+% =======
 
 R_E1 = 4000;
 R_E2 = 4000;
