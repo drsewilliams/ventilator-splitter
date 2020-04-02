@@ -51,19 +51,19 @@ R_M = 1; % Pa*s/m^3
 % current = m^3/s
 % charge = m^3
 % tube length = 1.5 m?
-R_U1 = 1;
-R_U2 = 1;
-R_D1 = 1;
-R_D2 = 1;
+R_U1 = 4000;
+R_U2 = 4000;
+R_D1 = 4000;
+R_D2 = 4000;
 
 R_L1 = 196133; % want 2.0cmH2O/L/s
 R_L2 = 196133;
 C_L1 = 6.5261838e-7; % 0.064 L/cmH2O into m^3/Pa
 C_L2 = 6.5261838e-7;
 
-R_E1 = 1;
-R_E2 = 1;
-R_O = 1;
+R_E1 = 4000;
+R_E2 = 4000;
+R_O = 4000;
 
 RR = 15;
 I = 1;
