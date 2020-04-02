@@ -1,0 +1,11 @@
+slprj/*
+slprj/sim/varcache/ssc_ventilator_splitter_PCV/checksumOfCache.mat
+slprj/sim/varcache/ssc_ventilator_splitter_two_lungs_fixed/tmwinternal/simulink_cache.xml
+slprj/sim/varcache/ssc_ventilator_splitter_two_lungs_fixed/checksumOfCache.mat
+slprj/sim/varcache/ssc_ventilator_splitter_PCV/varInfo.mat
+slprj/sim/varcache/ssc_ventilator_splitter_PCV/tmwinternal/simulink_cache.xml
+slprj/sim/varcache/ssc_ventilator_splitter_two_lungs_fixed/varInfo.mat
+ssc_ventilator_splitter_PCV.slxc
+ssc_ventilator_splitter_two_lungs_fixed.slxc
+*.slxc
+*.m~
