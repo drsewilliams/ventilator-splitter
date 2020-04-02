@@ -34,7 +34,7 @@ ETT_factor2 = 10;
 R_aL1 = 1e2; % want 2.0cmH2O/L/s
 R_aL2 = 1e2;
 C_aL1 = 1e-3; % 0.064 L/cmH2O into m^3/Pa
-C_asL2 = 2e-3;
+C_aL2 = 2e-3;
 % =======
 
 R_E1 = 1;
@@ -79,7 +79,7 @@ ETT_factor2 = 10;
 R_aL1 = 196133; % want 2.0cmH2O/L/s
 R_aL2 = 196133;
 C_aL1 = 6.5261838e-7; % 0.064 L/cmH2O into m^3/Pa
-C_asL2 = 6.5261838e-7;
+C_aL2 = 6.5261838e-7;
 % =======
 
 R_E1 = 4000;
