@@ -27,8 +27,8 @@ R_L1 = 1e2; % want 2.0cmH2O/L/s
 R_L2 = 1e2;
 C_L1 = 1e-3; % 0.064 L/cmH2O into m^3/Pa
 C_L2 = 2e-3;
-ETT_factor1 = 10;
-ETT_factor2 = 10;
+R_ETT1 = 1e3;
+R_ETT2 = 1e3;
 
 % === artificial patients ====
 R_aL1 = 1e2; % want 2.0cmH2O/L/s
@@ -72,8 +72,8 @@ R_L1 = 196133; % want 2.0cmH2O/L/s
 R_L2 = 196133;
 C_L1 = 6.5261838e-7; % 0.064 L/cmH2O into m^3/Pa
 C_L2 = 6.5261838e-7;
-ETT_factor1 = 10;
-ETT_factor2 = 10;
+R_ETT1 = 1961330;
+R_ETT2 = 1961330;
 
 % === artificial patients ====
 R_aL1 = 196133; % want 2.0cmH2O/L/s
