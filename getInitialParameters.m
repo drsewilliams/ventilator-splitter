@@ -79,6 +79,40 @@ switch param_config
         param_struct.RR = 15;
         param_struct.I = 1;
         param_struct.E = 2;
+    case {3, 13} % SI Units - based on literature
+        % Set the parameters...
+        param_struct.v_M_exhale = 490;% Pa PEEP = 5cmH20
+        param_struct.v_M_inhale = 1960; % PIP = 20cmH2O
+        param_struct.R_M = 4000; % Pa*s/m^3
+        % current = m^3/s
+        % charge = m^3
+        % tube length = 1.5 m?
+        param_struct.R_U1 = 3150; % Poiseille law for straight laminar pipe
+        param_struct.R_U2 = 3150; % assuming D = 22e-3 m, mu = 18.13e-6 Pa.s, 
+        param_struct.R_D1 = 3150; % L = 1 m, => R = (128*mu*L)/(pi*D^4)
+        param_struct.R_D2 = 3150;
+        
+        param_struct.R_L1 = 196133; % want 2.0cmH2O/L/s
+        param_struct.R_L2 = 196133;
+        param_struct.C_L1 = 6.5261838e-7; % 0.064 L/cmH2O into m^3/Pa
+        param_struct.C_L2 = 6.5261838e-7;
+        param_struct.R_ETT1 = 980000; % DOI: 10.1378/chest.96.6.1374
+        param_struct.R_ETT2 = 980000; % and 10.31744/einstein_journal/2020AO4805
+        
+        % === artificial patients ====
+        param_struct.R_aL1 = 196000; % want 2.0cmH2O/L/s
+        param_struct.R_aL2 = 196000;
+        param_struct.C_aL1 = 6.5261838e-7; % 0.064 L/cmH2O into m^3/Pa
+        param_struct.C_aL2 = 6.5261838e-7;
+        % =======
+        
+        param_struct.R_E1 = 3150;
+        param_struct.R_E2 = 3150;
+        param_struct.R_O = 3150;
+        
+        param_struct.RR = 15;
+        param_struct.I = 1;
+        param_struct.E = 2;
 end
 
 if param_config > 10

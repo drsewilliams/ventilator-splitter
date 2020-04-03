@@ -47,13 +47,13 @@ E = 2;
 IE_ratio = I/E;
 
 % ... and save them with a useful name
-save('Ventilator_Electrical_Parameters');
+save(fullfile('parameterfiles', 'Ventilator_Electrical_Parameters.mat'));
 
 %% Conversion to SI units
 % First, clear any parameter from this model that might be in the workspace 
 clear v_M_exhale v_M_inhale R_M R_U1 R_U2 R_D1 R_D2 R_L1 R_L2 C_L1 C_L2 ...
     R_aL1 R_aL2 C_aL1 C_aL2 RaR_E1 R_E2 R_O RR I E IE_ratio...
-    ETT_factor1 ETT_factor2; 
+    R_ETT1 R_ETT2; 
 clc; 
 
 % Set the parameters...
@@ -92,4 +92,4 @@ E = 2;
 IE_ratio = I/E;
 
 % ... and save them with a useful name
-save('Ventilator_Electrical_Parameters_SIUnits');
+save(fullfile('parameterfiles', 'Ventilator_Electrical_Parameters_SIUnits.mat'));

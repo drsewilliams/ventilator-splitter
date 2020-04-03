@@ -15,14 +15,16 @@ function [simout, t, y] = runElectricalAnalogueModel(whichModel, param_config)
 %           param_config = 2 Original parameter configuration (SI units)
 %
 
-
+userDefinedParams = false;
 if nargin == 0
     whichModel=0; % or 1, or 2 at the moment
 elseif nargin < 2
     param_config = -1;
+elseif isstruct(param_config)
+    userDefinedParams = true;
 end
 
-mdl = 'ssc_vent_splitter_electrical';
+mdl = fullfile('models','ssc_vent_splitter_electrical');
 switch whichModel
     case {1, 11}
         mdl = strcat(mdl, '_parallelbag');
@@ -42,7 +44,14 @@ fprintf('[runModel] Running model [%s]\n', mdl);
 
 mdl_handle = load_system(mdl);
 mdlWks = get_param(mdl_handle,'ModelWorkspace');
-[param_struct] = getInitialParameters(param_config);
+if userDefinedParams == false
+    [param_struct] = getInitialParameters(param_config);
+else
+    % the user can get a list of parameters and pass it as a structure inside
+    % param_config. 
+    param_struct = param_config;
+end
+
 if ~isempty(param_struct)
     % a specific parameter configuration was asked for.
     fprintf('[runModel] Changing simulation parameters to: %s\n', ...
@@ -66,13 +75,13 @@ fprintf('[runModel] Finished.\n');
 if nargout > 1
     y(1).Control = simout.ScopeData.signals(1).values;
     y(1).Pressure = simout.ScopeData.signals(2).values;
-    y(1).Current = simout.ScopeData.signals(3).values;
-    y(1).Charge = simout.ScopeData.signals(4).values;
+    y(1).Flow = simout.ScopeData.signals(3).values;
+    y(1).Volume = simout.ScopeData.signals(4).values;
     if whichModel > -1
         y(2).Control = simout.ScopeData.signals(1).values;
         y(2).Pressure = simout.ScopeData.signals(5).values;
-        y(2).Current = simout.ScopeData.signals(6).values;
-        y(2).Charge = simout.ScopeData.signals(7).values;
+        y(2).Flow = simout.ScopeData.signals(6).values;
+        y(2).Volume = simout.ScopeData.signals(7).values;
     end
     t = simout.ScopeData.time;
     fprintf('[runModel] Optional output saved to variables.\n');

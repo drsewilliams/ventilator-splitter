@@ -6,6 +6,9 @@ function [strconfig] = getConfigurationName(param_config)
 %
 if nargin < 1
     param_config = -1;
+elseif isstruct(param_config)
+    strconfig = "User defined parameters";
+    return;
 end
 switch param_config
     case -1 % do not change parameters at all
@@ -17,6 +20,8 @@ switch param_config
     case {2, 12} % Original SI Units
         % Set the parameters...
         strconfig = 'Original configuration (SI Units)';
+    case {3,13}
+        strconfig = "SI Units - based on literature";
     %case 1000 % load parameters from file?
     otherwise
         strconfig = 'New configuration';
