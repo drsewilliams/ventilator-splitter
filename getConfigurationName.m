@@ -18,6 +18,8 @@ switch param_config
         % Set the parameters...
         strconfig = 'Original configuration (SI Units)';
     %case 1000 % load parameters from file?
+    otherwise
+        strconfig = 'New configuration';
 end
 if param_config > 10
     strconfig = strcat(strconfig, ' [R_M = R_O = 0]');
