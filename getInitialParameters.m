@@ -96,8 +96,10 @@ switch param_config
         param_struct.R_L2 = 196133;
         param_struct.C_L1 = 6.5261838e-7; % 0.064 L/cmH2O into m^3/Pa
         param_struct.C_L2 = 6.5261838e-7;
-        param_struct.R_ETT1 = 980000; % DOI: 10.1378/chest.96.6.1374
-        param_struct.R_ETT2 = 980000; % and 10.31744/einstein_journal/2020AO4805
+        param_struct.R_ETT1 = 980000*0.8; % DOI: 10.1378/chest.96.6.1374
+        param_struct.R_ETT2 = 980000*0.8; % and 10.31744/einstein_journal/2020AO4805
+                                          % the factor of 0.8 was taken
+                                          % from Campbell & Brown (1963)
         
         % === artificial patients ====
         param_struct.R_aL1 = 196000; % want 2.0cmH2O/L/s

@@ -11,7 +11,7 @@ index = 1;
 for ix=1:N
     subplot(2,N,index)
     plot(t, y(ix).Control, ':k', t, y(ix).Pressure, '-r', 'LineWidth', 2);
-    legend({'Control', 'Pressure'}, 'Location', 'southoutside', ...
+    legend({'Control', 'Pressure'}, 'Location', 'south', ...
         'Orientation', 'horizontal', 'FontSize', 16);
     grid on;
     if ~isempty(lungtitles)
@@ -19,8 +19,8 @@ for ix=1:N
     end
     
     subplot(2,N,index+N)
-    plot(t, y(ix).Current, '-b', t, y(ix).Charge, '--m', 'LineWidth', 2);
-    legend({'Current', 'Charge'}, 'Location', 'southoutside', ...
+    plot(t, y(ix).Flow, '-b', t, y(ix).Volume, '--m', 'LineWidth', 2);
+    legend({'Flow', 'Volume'}, 'Location', 'south', ...
         'Orientation', 'horizontal', 'FontSize', 16);
     grid on;
     if ~isempty(lungtitles)
