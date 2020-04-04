@@ -4,7 +4,9 @@ function [simout, t, y] = runElectricalAnalogueModel(whichModel, param_config)
 %
 % USAGE: [simout] = runElectricalAnalogueModel(whichModel, param_config)
 %
-% INPUTS:   whichModel = -1 => ssc_vent_splitter_electrical_single (model_single)
+% INPUTS:   whichModel = 'baseline' - standard-splitter
+%           whichModel = 'modified' - modified-splitter
+%           whichModel = -1 => ssc_vent_splitter_electrical_single (model_single)
 %           whichModel = 0  => ssc_vent_splitter_electrical (model_0)[default]
 %           whichModel = 1  => ssc_vent_splitter_electrical_parallelbag (model_1)
 %           whichModel = 2  => ssc_vent_splitter_electrical_seriesbag (model_2)
@@ -24,20 +26,29 @@ elseif isstruct(param_config)
     userDefinedParams = true;
 end
 
-mdl = fullfile('models','ssc_vent_splitter_electrical');
-switch whichModel
-    case {1, 11}
-        mdl = strcat(mdl, '_parallelbag');
-    case {2, 12}
-        mdl = strcat(mdl, '_seriesbag');
-    case {3, 13}
-        mdl = strcat(mdl, '_seriesbagpipe');
-    case -1
-        mdl = strcat(mdl, '_single');
-end
-
-if whichModel >= 10
-    mdl = strcat(mdl, '_us_phs');
+if isnumeric(whichModel)
+    mdl = fullfile('models','ssc_vent_splitter_electrical');
+    switch whichModel
+        case {1, 11}
+            mdl = strcat(mdl, '_parallelbag');
+        case {2, 12}
+            mdl = strcat(mdl, '_seriesbag');
+        case {3, 13}
+            mdl = strcat(mdl, '_seriesbagpipe');
+        case -1
+            mdl = strcat(mdl, '_single');
+    end
+    
+    if whichModel >= 10
+        mdl = strcat(mdl, '_us_phs');
+    end
+elseif isstr(whichModel)
+    switch whichModel
+        case {'baseline', 'standard'}
+            mdl = fullfile('models','standard_splitter');
+        case 'modified'
+            mdl = fullfile('models','modified_splitter');
+    end
 end
 
 fprintf('[runModel] Running model [%s]\n', mdl);
@@ -48,7 +59,7 @@ if userDefinedParams == false
     [param_struct] = getInitialParameters(param_config);
 else
     % the user can get a list of parameters and pass it as a structure inside
-    % param_config. 
+    % param_config.
     param_struct = param_config;
 end
 

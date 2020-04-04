@@ -9,7 +9,7 @@ if nargin < 1
 end
 switch param_config
     case -1 % do not change parameters at all
-        param_struct = [];
+        param_struct = [];        
     case {1, 11} % original configuration
         % Set the parameters...
         param_struct.v_M_exhale = 5;% Pa PEEP = 5cmH20
@@ -18,10 +18,10 @@ switch param_config
         % current = m^3/s
         % charge = m^3
         % tube length = 1.5 m?
-        param_struct.R_U1 = 1;
-        param_struct.R_U2 = 1;
-        param_struct.R_D1 = 1;
-        param_struct.R_D2 = 1;
+        param_struct.R_U1 = 1; % change to R_V1
+        param_struct.R_U2 = 1; % change to R_V2
+        param_struct.R_D1 = 1; % change to R_I1
+        param_struct.R_D2 = 1; % change to R_I2
         
         param_struct.R_L1 = 1e2; % want 2.0cmH2O/L/s
         param_struct.R_L2 = 1e2;

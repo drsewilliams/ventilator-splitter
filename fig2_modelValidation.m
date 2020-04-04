@@ -15,51 +15,35 @@
 %% Tidy up
 clear all; close all; clc;
 
+% whichModel = 10; % 0 + 10 (US_PHS recommendations)
+whichModel = 'modified';
+param_config = 13; % 3 (literature SI Units) + 10 (RM=RO=0)
+
 %% TWO PATIENTs A
 disp('STEP 1. TWO PATIENTs A');
 
-whichModel = 10; % 0 + 10 (US_PHS recommendations)
-param_config = 13; % 3 (literature SI Units) + 10 (RM=RO=0)
-
 [param_stepA] = getInitialParameters(param_config);
-
 [sim_stepA, t_stepA, y_stepA] = ...
     runElectricalAnalogueModel(whichModel, param_stepA);
 
 %% TWO PATIENTs B
 disp('STEP 2. TWO PATIENTs B');
 
-whichModel = 10; % 0 + 10 (US_PHS recommendations)
-param_config = 13; % 3 (literature SI Units) + 10 (RM=RO=0)
-
 [param_stepB] = getParametersWithPatients('B', 'B', param_config);
-
 [sim_stepB, t_stepB, y_stepB] = ...
     runElectricalAnalogueModel(whichModel, param_stepB);
 
 %% TWO PATIENTs C
 disp('STEP 3. TWO PATIENTs C');
 
-whichModel = 10; % 0 + 10 (US_PHS recommendations)
-param_config = 13; % 3 (literature SI Units) + 10 (RM=RO=0)
-
-[param_stepC] = getInitialParameters(param_config);
-param_stepC.C_L1 = 0.4*param_stepC.C_L1;
-param_stepC.C_L2 = 0.4*param_stepC.C_L2;
-
+[param_stepC] = getParametersWithPatients('C', 'C', param_config);
 [sim_stepC, t_stepC, y_stepC] = ...
     runElectricalAnalogueModel(whichModel, param_stepC);
 
 %% TWO PATIENTs D
 disp('STEP 4. TWO PATIENTs D');
 
-whichModel = 10; % 0 + 10 (US_PHS recommendations)
-param_config = 13; % 3 (literature SI Units) + 10 (RM=RO=0)
-
-[param_stepD] = getInitialParameters(param_config);
-param_stepD.C_L1 = 0.3*param_stepD.C_L1;
-param_stepD.C_L2 = 0.3*param_stepD.C_L2;
-
+[param_stepD] = getParametersWithPatients('D', 'D', param_config);
 [sim_stepD, t_stepD, y_stepD] = ...
     runElectricalAnalogueModel(whichModel, param_stepD);
 
@@ -75,7 +59,7 @@ figure(4)
 plotScopeData(t_stepC,y_stepC, {'Patient D1', 'Patient D2'});
 
 %% Set variable name to pressure
-figure(5) % Compare pressure in all models.
+figure(5) 
 
 varName = 'pressure';
 subplot(321)
