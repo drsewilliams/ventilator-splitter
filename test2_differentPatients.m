@@ -8,16 +8,18 @@
 %
 % Guide:
 % PATIENT A: C_L @ 100%
-% PATIENT B: C_L @ 50%
-% PATIENT C: C_L @ 40%
-% PATIENT D: C_L @ 30%
+% PATIENT B: C_L @ 70%
+% PATIENT C: C_L @ 60%
+% PATIENT D: C_L @ 50%
 %
 %% Tidy up
-clear all; close all; clc;
+clc;
 
 % whichModel = 10; % 0 + 10 (US_PHS recommendations)
-whichModel = 'modified';
+whichModel = 'standard';
 param_config = 13; % 3 (literature SI Units) + 10 (RM=RO=0)
+modR_I = 3150*2;
+modR_E = 3150*2;
 
 %% Patients discrepancies
 disp('Discrepancies in patients');
@@ -28,20 +30,31 @@ patient2 = {'a', 'b', 'c', 'd'};
 for ix=1:length(patient1)
     for jx=(ix+1):length(patient2)
         fprintf('Patient 1 [%s], Patient2 [%s]\n', patient1{ix}, patient2{jx});
-        param_struct.([patient1{ix} patient2{jx}]) = ...
+        whichPair = [patient1{ix} patient2{jx}]; % for handling the output structure
+        param_struct.(whichPair) = ...
             getParametersWithPatients(patient1{ix}, patient2{jx}, param_config);
         
-        [~, t.([patient1{ix} patient2{jx}]), y.([patient1{ix} patient2{jx}])] = ...
-            runElectricalAnalogueModel(whichModel, param_struct.([patient1{ix} patient2{jx}]));
+        % On-the-fly modifications to the parameters
+        param_struct.(whichPair).R_D1 = modR_I;
+        param_struct.(whichPair).R_D2 = modR_I;
+        param_struct.(whichPair).R_E1 = modR_E;
+        param_struct.(whichPair).R_E2 = modR_E;
+        
+        [~, t.(whichPair), y.(whichPair)] = ...
+            runElectricalAnalogueModel(whichModel, param_struct.(whichPair));
+        tV = [tidalVolume(t.(whichPair), y.(whichPair)(1).Volume) tidalVolume(t.(whichPair), y.(whichPair)(2).Volume)];
+        results.(whichPair) = [tV (tV(2)-tV(1))];
     end
 end
 
 %% Comparison plots - All vs all
-figure(1)
+figure(21)
 plotPairwiseComparison(t, y, 'pressure');
-figure(2)
+figure(22)
 plotPairwiseComparison(t, y, 'volume');
-figure(3)
+figure(23)
 plotPairwiseComparison(t, y, 'flow');
+figure(24)
+plotPairwiseComparison(t, y, 'modifiedVol');
 
 

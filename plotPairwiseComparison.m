@@ -22,6 +22,8 @@ for ix=1:length(experiment)
     else
         legendCell = {pat1{ix}, pat2{ix}};
     end
+    [~, newyticks] = siunits2clinical(yticks, variableName);
+    yticklabels(newyticks);
     
     hold off;
     grid on;

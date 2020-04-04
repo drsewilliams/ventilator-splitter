@@ -4,9 +4,9 @@ function [param_struct] = getParametersWithPatients(patient1, patient2, param_co
 %
 % Guide:
 % PATIENT A: C_L @ 100% 
-% PATIENT B: C_L @ 50% 
-% PATIENT C: C_L @ 40%
-% PATIENT D: C_L @ 30%
+% PATIENT B: C_L @ 70% 
+% PATIENT C: C_L @ 60%
+% PATIENT D: C_L @ 50%
 %
 % param_config allows to choose between different parameter configurations
 % [default=13 => 3 (literature SI Units) + 10 (RM=RO=0)]
@@ -22,11 +22,11 @@ switch patient1
     case {'a', 'A'}
         factor1 = 1;
     case {'b', 'B'}
-        factor1 = 0.5;
+        factor1 = 0.7;
     case {'c', 'C'}
-        factor1 = 0.4;
+        factor1 = 0.6;
     case {'d', 'D'}
-        factor1 = 0.3;
+        factor1 = 0.5;
     otherwise
         disp('[ERROR] Specified patient not found.');
         factor1 = 1;
@@ -36,11 +36,11 @@ switch patient2
     case {'a', 'A'}
         factor2 = 1;
     case {'b', 'B'}
-        factor2 = 0.5;
+        factor2 = 0.7;
     case {'c', 'C'}
-        factor2 = 0.4;
+        factor2 = 0.6;
     case {'d', 'D'}
-        factor2 = 0.3;
+        factor2 = 0.5;
     otherwise
         disp('[ERROR] Specified patient not found.');
         factor2 = 1;

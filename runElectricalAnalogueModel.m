@@ -19,36 +19,22 @@ function [simout, t, y] = runElectricalAnalogueModel(whichModel, param_config)
 
 userDefinedParams = false;
 if nargin == 0
-    whichModel=0; % or 1, or 2 at the moment
+    whichModel='standard'
 elseif nargin < 2
     param_config = -1;
 elseif isstruct(param_config)
     userDefinedParams = true;
 end
 
-if isnumeric(whichModel)
-    mdl = fullfile('models','ssc_vent_splitter_electrical');
-    switch whichModel
-        case {1, 11}
-            mdl = strcat(mdl, '_parallelbag');
-        case {2, 12}
-            mdl = strcat(mdl, '_seriesbag');
-        case {3, 13}
-            mdl = strcat(mdl, '_seriesbagpipe');
-        case -1
-            mdl = strcat(mdl, '_single');
-    end
-    
-    if whichModel >= 10
-        mdl = strcat(mdl, '_us_phs');
-    end
-elseif isstr(whichModel)
-    switch whichModel
-        case {'baseline', 'standard'}
-            mdl = fullfile('models','standard_splitter');
-        case 'modified'
-            mdl = fullfile('models','modified_splitter');
-    end
+switch whichModel
+    case {'baseline', 'standard'}
+        mdl = fullfile('models','standard_splitter');
+    case 'modified'
+        mdl = fullfile('models','modified_splitter');
+    case 'twolungs'
+        mdl = fullfile('models','standard_twolungs');
+    case 'tubingcompliance'
+        mdl = fullfile('models','standard_tubingcompliance');
 end
 
 fprintf('[runModel] Running model [%s]\n', mdl);
@@ -77,22 +63,32 @@ end
 fprintf('[runModel] Model loaded [%s] Running... \n', mdl);
 
 simout = sim(mdl,'SaveOutput','on','StartTime', '0', 'StopTime', '15', ...
-    'FixedStep', '0.01','OutputSaveName','yOut', 'SaveTime','on',...
-    'TimeSaveName','tOut');
+    'FixedStep', '1e-6','OutputSaveName','yOut', 'SaveTime','on',...
+    'TimeSaveName','tOut', 'AbsTol','1e-9');
 
 fprintf('[runModel] Finished.\n');
 
 if nargout > 1
+    t = simout.ScopeData.time;
     y(1).Control = simout.ScopeData.signals(1).values;
     y(1).Pressure = simout.ScopeData.signals(2).values;
     y(1).Flow = simout.ScopeData.signals(3).values;
     y(1).Volume = simout.ScopeData.signals(4).values;
+    y(1).ModifiedVol = modifyVolume(y(1).Volume);
     if whichModel > -1
         y(2).Control = simout.ScopeData.signals(1).values;
         y(2).Pressure = simout.ScopeData.signals(5).values;
         y(2).Flow = simout.ScopeData.signals(6).values;
         y(2).Volume = simout.ScopeData.signals(7).values;
+        y(2).ModifiedVol = modifyVolume(y(1).Volume);
     end
-    t = simout.ScopeData.time;
+    
     fprintf('[runModel] Optional output saved to variables.\n');
+end
+
+end
+
+function [ymod] = modifyVolume(y)
+[~,YLOWER] = envelope(y, 6, 'peak');
+ymod = y-YLOWER;
 end

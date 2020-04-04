@@ -13,6 +13,9 @@ for ix=1:N
     plot(t, y(ix).Control, ':k', t, y(ix).Pressure, '-r', 'LineWidth', 2);
     legend({'Control', 'Pressure'}, 'Location', 'south', ...
         'Orientation', 'horizontal', 'FontSize', 16);
+    [~, newyticks] = siunits2clinical(yticks, 'pressure');
+    yticklabels(newyticks);
+    
     grid on;
     if ~isempty(lungtitles)
         title([lungtitles{ix} 32 '- Pressure'], 'FontSize', 20);
@@ -23,6 +26,7 @@ for ix=1:N
     legend({'Flow', 'Volume'}, 'Location', 'south', ...
         'Orientation', 'horizontal', 'FontSize', 16);
     grid on;
+    [~, newyticks] = siunits2clinical(yticks, 'flow');
     if ~isempty(lungtitles)
         title([lungtitles{ix} 32 '- Flow and volume'], 'FontSize', 20);
     end
