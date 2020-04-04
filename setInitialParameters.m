@@ -130,7 +130,7 @@ R_O = 0;
 RR = 15;
 I = 1;
 E = 2;
-
+IE_ratio = I/E;
 % ... and save them with a useful name
 save(fullfile('parameterfiles', 'Ventilator_Electrical_Parameters_CHOSEN.mat'));
 

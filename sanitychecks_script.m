@@ -71,5 +71,5 @@ param_step4.v_M_inhale = 15*98.0665; % PIP @ 15 cmH2O
 
 [~, t_4, y_4] = runElectricalAnalogueModel(whichModel, param_step4);
 
-results.step4 = tidalVolume(t_3, y_3(1).Volume);
+results.step4 = tidalVolume(t_4, y_4(1).Volume);
 
