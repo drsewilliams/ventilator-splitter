@@ -94,6 +94,7 @@ results.Dd = [tVdd (tVdd(2)-tVdd(1))];
 
 varName = 'pressure';
 figure(11)
+set(gcf, 'Position', [36         101        1556         879]);
 subplot(211)
 plotSingleVariable(t_stepA, y_stepA(1), varName, '-+');
 hold on;
@@ -135,6 +136,7 @@ title(sprintf('Comparison of %s - Different patients', varName), 'FontSize', 20)
 
 varName = 'volume';
 figure(12)
+set(gcf, 'Position', [36         101        1556         879]);
 subplot(211)
 plotSingleVariable(t_stepA, y_stepA(1), varName, '-+');
 hold on;
@@ -171,6 +173,7 @@ title(sprintf('Comparison of %s - Different patients', varName), 'FontSize', 20)
 
 varName = 'flow';
 figure(13)
+set(gcf, 'Position', [36         101        1556         879]);
 subplot(211)
 plotSingleVariable(t_stepA, y_stepA(1), varName, '-+');
 hold on;
@@ -207,6 +210,7 @@ legend({'Flow A(2)', 'B(2)', 'C(2)', ...
 title(sprintf('Comparison of %s - Different patients', varName), 'FontSize', 20);
 
 figure(14) % Modified Volume
+set(gcf, 'Position', [36         101        1556         879]);
 varName = 'ModifiedVol';
 subplot(211)
 plotSingleVariable(t_stepA, y_stepA(1), varName, '-+');

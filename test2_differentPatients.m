@@ -49,12 +49,16 @@ end
 
 %% Comparison plots - All vs all
 figure(21)
+set(gcf, 'Position', [36         101        1556         879]);
 plotPairwiseComparison(t, y, 'pressure');
 figure(22)
+set(gcf, 'Position', [36         101        1556         879]);
 plotPairwiseComparison(t, y, 'volume');
 figure(23)
+set(gcf, 'Position', [36         101        1556         879]);
 plotPairwiseComparison(t, y, 'flow');
 figure(24)
+set(gcf, 'Position', [36         101        1556         879]);
 plotPairwiseComparison(t, y, 'modifiedVol');
 
 
