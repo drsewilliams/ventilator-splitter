@@ -117,7 +117,6 @@ plotSingleVariable(t_Ab, y_Ab(1), varName, '-+');
 hold on;
 plotSingleVariable(t_Ac, y_Ac(1), varName, '-');
 plotSingleVariable(t_Ad, y_Ad(1), varName, '--');
-plotSingleVariable(t, y(1), varName, '-.');
 [~, newyticks] = siunits2clinical(yticks, varName);
 yticklabels(newyticks);
 
@@ -134,7 +133,6 @@ plotSingleVariable(t_Ab, y_Ab(2), varName, '-+');
 hold on;
 plotSingleVariable(t_Ac, y_Ac(2), varName, '-');
 plotSingleVariable(t_Ad, y_Ad(2), varName, '--');
-plotSingleVariable(t, y(2), varName, '-.');
 [~, newyticks] = siunits2clinical(yticks, varName);
 yticklabels(newyticks);
 
