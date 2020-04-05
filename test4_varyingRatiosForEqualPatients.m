@@ -1,5 +1,5 @@
 %% Tidy up
-close all; clc;
+clc;
 
 % whichModel = 10; % 0 + 10 (US_PHS recommendations)
 whichModel = 'modified';
