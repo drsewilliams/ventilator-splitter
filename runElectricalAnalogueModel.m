@@ -80,7 +80,7 @@ if nargout > 1
         y(2).Pressure = simout.ScopeData.signals(5).values;
         y(2).Flow = simout.ScopeData.signals(6).values;
         y(2).Volume = simout.ScopeData.signals(7).values;
-        y(2).ModifiedVol = modifyVolume(y(1).Volume);
+        y(2).ModifiedVol = modifyVolume(y(2).Volume);
     end
     
     fprintf('[runModel] Optional output saved to variables.\n');
