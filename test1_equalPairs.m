@@ -18,8 +18,10 @@ close all; clc;
 % whichModel = 10; % 0 + 10 (US_PHS recommendations)
 whichModel = 'standard';
 param_config = 13; % 3 (literature SI Units) + 10 (RM=RO=0)
-modR_I = 3150*2;
-modR_E = 3150*2;
+modR_I = 3150*1.8;
+modR_E = 3150*1.8;
+modC_L = 5.50646758e-07; % 54 ml/cmH2O
+modPIP = 15*98.0665; % PIP @ 15 cmH2O
 
 %% TWO PATIENTs A
 disp('STEP 1. TWO PATIENTs A');
@@ -27,11 +29,13 @@ disp('STEP 1. TWO PATIENTs A');
 [param_stepA] = getInitialParameters(param_config);
 
 % On-the-fly modifications to the parameters
-param_stepA.v_M_inhale = 15*98.0665; % PIP @ 15 cmH2O
+param_stepA.v_M_inhale = modPIP;
 param_stepA.R_D1 = modR_I;
 param_stepA.R_D2 = modR_I;
 param_stepA.R_E1 = modR_E;
 param_stepA.R_E2 = modR_E;
+param_stepA.C_L1 = modC_L;
+param_stepA.C_L2 = modC_L;
 
 [sim_stepA, t_stepA, y_stepA] = ...
     runElectricalAnalogueModel(whichModel, param_stepA);
@@ -44,11 +48,13 @@ disp('STEP 2. TWO PATIENTs B');
 
 [param_stepB] = getParametersWithPatients('B', 'B', param_config);
 % On-the-fly modifications to the parameters
-param_stepB.v_M_inhale = 15*98.0665; % PIP @ 15 cmH2O
+param_stepB.v_M_inhale = modPIP; % PIP @ 15 cmH2O
 param_stepB.R_D1 = modR_I;
 param_stepB.R_D2 = modR_I;
 param_stepB.R_E1 = modR_E;
 param_stepB.R_E2 = modR_E;
+param_stepB.C_L1 = 0.8*modC_L;
+param_stepB.C_L2 = 0.8*modC_L;
 
 [sim_stepB, t_stepB, y_stepB] = ...
     runElectricalAnalogueModel(whichModel, param_stepB);
@@ -61,11 +67,13 @@ disp('STEP 3. TWO PATIENTs C');
 
 [param_stepC] = getParametersWithPatients('C', 'C', param_config);
 % On-the-fly modifications to the parameters
-param_stepC.v_M_inhale = 15*98.0665; % PIP @ 15 cmH2O
+param_stepC.v_M_inhale = modPIP; % PIP @ 15 cmH2O
 param_stepC.R_D1 = modR_I;
 param_stepC.R_D2 = modR_I;
 param_stepC.R_E1 = modR_E;
 param_stepC.R_E2 = modR_E;
+param_stepC.C_L1 = 0.7*modC_L;
+param_stepC.C_L2 = 0.7*modC_L;
 
 [sim_stepC, t_stepC, y_stepC] = ...
     runElectricalAnalogueModel(whichModel, param_stepC);
@@ -78,11 +86,13 @@ disp('STEP 4. TWO PATIENTs D');
 
 [param_stepD] = getParametersWithPatients('D', 'D', param_config);
 % On-the-fly modifications to the parameters
-param_stepD.v_M_inhale = 15*98.0665; % PIP @ 15 cmH2O
+param_stepD.v_M_inhale = modPIP; % PIP @ 15 cmH2O
 param_stepD.R_D1 = modR_I;
 param_stepD.R_D2 = modR_I;
 param_stepD.R_E1 = modR_E;
 param_stepD.R_E2 = modR_E;
+param_stepD.C_L1 = 0.6*modC_L;
+param_stepD.C_L2 = 0.6*modC_L;
 
 [sim_stepD, t_stepD, y_stepD] = ...
     runElectricalAnalogueModel(whichModel, param_stepD);

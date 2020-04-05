@@ -18,7 +18,8 @@ newPIP = 15*98.0665; % PIP @ 15 cmH2O
 
 whichModel = 'standard';
 param_config = 13; % 3 (literature SI Units) + 10 (RM=RO=0)
-modC_L = 6.1183e-07; % 0.064
+%modC_L = 6.1183e-07; % 0.064
+modC_L = 5.50646758e-07;
 
 [param_step1] = getInitialParameters(param_config);
 
