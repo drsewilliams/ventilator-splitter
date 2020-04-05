@@ -13,7 +13,7 @@
 % PATIENT D: C_L @ 50%
 % 
 %% Tidy up
-close all; clc;
+clc;
 
 % whichModel = 10; % 0 + 10 (US_PHS recommendations)
 whichModel = 'standard';

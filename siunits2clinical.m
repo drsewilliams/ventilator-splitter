@@ -6,7 +6,7 @@ switch lower(whichConversion)
     case 'pressure'
         % pascal 2 cmh2o
         const = 0.0101972;
-    case 'volume'
+    case {'volume', 'modifiedvol'}
         % m^3 to mL
         const = 1e6;
     case 'flow'

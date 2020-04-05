@@ -73,5 +73,10 @@ end
 fprintf('PIP=%3.2f, R_V1=%3.2f, TV1=%3.2f, TV2=%3.2f\n', ...
     param_struct.v_M_inhale/98.0665, param_struct.R_U1, tva, tvb);
 
+table_test3.PIP_ac = param_struct.v_M_inhale/98.0665;
+table_test3.RV1_ac = param_struct.R_U1;
+table_test3.tvac_A = tva;
+table_test3.tvac_C = tvb;
+
 t_Ac = t;
 y_Ac = y;

@@ -21,6 +21,11 @@ param_base.R_U2 = 0;
 
 tVcc = [tidalVolume(t_base, y_base(1).Volume) tidalVolume(t_base, y_base(2).Volume)];
 resultstest4.Cc = [tVcc (tVcc(2)-tVcc(1))];
+table_test4.PIP = param_base.v_M_inhale/98.0665;
+table_test4.RV1 = param_base.R_U1;
+table_test4.RV2 = param_base.R_U2;
+table_test4.tv1 = tVcc(1);
+table_test4.tv2 = tVcc(2);
 
 %% decrease TV2 by 30%
 newR_V1 = 3150;
@@ -45,6 +50,12 @@ t_decrease = t;
 y_decrease = y;
 fprintf('PIP=%3.2f, R_V2=%3.2f, TV1=%3.2f, TV2=%3.2f\n', ...
     param_struct.v_M_inhale/98.0665, param_struct.R_U2, tv1, tv2);
+
+table_test4.PIP = param_struct.v_M_inhale/98.0665;
+table_test4.RV1 = param_struct.R_U1;
+table_test4.RV2 = param_struct.R_U2;
+table_test4.tv1 = tv1;
+table_test4.tv2 = tv2;
 
 %% increase TV2 by 30%
 factorPIP = 98.0665/3;
@@ -86,6 +97,12 @@ y_increase = y;
 resultstest4.Cc_increaseTV2 = [tv1 tv2 (tv1-tv2)];
 fprintf('PIP=%3.2f, R_V1=%3.2f, TV1=%3.2f, TV2=%3.2f\n', ...
     param_struct.v_M_inhale/98.0665, param_struct.R_U1, tv1, tv2);
+
+table_test4.PIP = param_struct.v_M_inhale/98.0665;
+table_test4.RV1 = param_struct.R_U1;
+table_test4.RV2 = param_struct.R_U2;
+table_test4.tv1 = tv1;
+table_test4.tv2 = tv2;
 
 %% PLOTs
 
@@ -203,7 +220,6 @@ plotSingleVariable(t_base, y_base(1), varName, '-+');
 hold on;
 plotSingleVariable(t_decrease, y_decrease(1), varName, '-');
 plotSingleVariable(t_increase, y_increase(1), varName, '--');
-plotSingleVariable(t, y(1), varName, '-.');
 [~, newyticks] = siunits2clinical(yticks, varName);
 yticklabels(newyticks);
 
@@ -220,7 +236,6 @@ plotSingleVariable(t_base, y_base(2), varName, '-+');
 hold on;
 plotSingleVariable(t_decrease, y_decrease(2), varName, '-');
 plotSingleVariable(t_increase, y_increase(2), varName, '--');
-plotSingleVariable(t, y(2), varName, '-.');
 [~, newyticks] = siunits2clinical(yticks, varName);
 yticklabels(newyticks);
 
